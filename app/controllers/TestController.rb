@@ -24,6 +24,20 @@ class TestController < ApplicationController
     erb :'/tests/edit'
   end
 
+  delete '/tests/:id/delete' do
+    @test = Test.find_by_id(params[:id])
+    if session[:user_id] == @test.user_id
+      if @test.user_id == session[:user_id]
+        @test.delete
+        redirect to '/tests'
+      else
+        redirect to '/tests'
+      end
+    else
+      redirect to '/tests'
+    end
+  end
+
   patch '/tests/:id' do
     @user = User.find_by_id(session[:user_id])
     @test = Test.find_by_id(params[:id])

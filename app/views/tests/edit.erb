@@ -10,4 +10,8 @@
     <label>Description: <input type="text" value="<%= @test.description %>" name="description"></label><br>
     <input type="submit" value="submit">
   </form>
+  <form action="/tests/<%=@test.id%>/delete" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Test">
+  </form>
 </center>
