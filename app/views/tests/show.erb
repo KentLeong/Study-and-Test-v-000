@@ -4,6 +4,7 @@
   <% @tests.each do |test| %>
     <% user = User.find_by_id(test.user_id) %>
     <a href=""><%= test.name %></a> - By: <a href=""><%=user.username%></a><br>
+    <p>Description:<br><p><%=test.description%></p></p><br><br>
   <% end %>
 
 </center>

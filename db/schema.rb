@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160826223938) do
   create_table "tests", force: :cascade do |t|
     t.string  "name"
     t.integer "user_id"
+    t.string  "description"
   end
 
   create_table "users", force: :cascade do |t|
