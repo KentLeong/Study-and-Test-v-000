@@ -16,6 +16,9 @@ class TestController < ApplicationController
   get '/tests/:id' do
     @user = User.find_by_id(session[:user_id])
     @test = Test.find_by_id(params[:id])
+    if !session[:user_id]
+      redirect to '/'
+    end
     erb :'/tests/show'
   end
 

@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826223938) do
+ActiveRecord::Schema.define(version: 20160827035354) do
+
+  create_table "multiple_choices", force: :cascade do |t|
+    t.string  "question"
+    t.string  "choice1"
+    t.string  "choice2"
+    t.string  "choice3"
+    t.string  "choice4"
+    t.string  "answer"
+    t.integer "test_id"
+    t.integer "study_id"
+  end
 
   create_table "studies", force: :cascade do |t|
     t.string "name"
