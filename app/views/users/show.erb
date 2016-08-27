@@ -1,15 +1,18 @@
 <center>
-<h1>Hello, <%=@user.username%>!</h1>
-
+<% if session[:user_id] == @user.id %>
+  <h1>Hello, <%=@user.username%>!</h1>
 <h2><a href="/tests/create">Create</a> a test?</h2>
+<% end %>
 
 <br>
-
-<h1>Your Tests:</h1>
+<% if session[:user_id] == @user.id %>
+  <h1>Your Tests:</h1>
+<% else %>
+  <h1><%=@user.username%></h1>
+<% end %>
 <% @user.tests.each do |test| %>
   <a href="/tests/<%= test.id %>"><%= test.name %></a><br><br>
-  <a href="/tests/<%=test.id%>/edit">Edit</a> |
-  <a href="/tests/<%=test.id%>/delete">Delete</a>
+  <a href="/tests/<%=test.id%>/edit">Edit</a>
   <p>Description:
   <%= test.description %></p><br><br>
 <% end %>
