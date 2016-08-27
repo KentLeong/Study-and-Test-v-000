@@ -6,8 +6,13 @@
 
   <center>
     <a href="/">Home</a><br>
-    <a href="/login">Login</a><br>
-    <a href="/signup">Signup</a>
+    <% if session[:user_id] %>
+      <p>Welcome, <a href="/users/<%=session[:user_id]%>"><%=User.find_by_id(session[:user_id]).username%></a></p>
+      <a href="/signout">Sign Out</a>
+    <% else %>
+      <a href="/login">Login</a><br>
+      <a href="/signup">Signup</a>
+    <% end %>
   </center>
 
   <body>
