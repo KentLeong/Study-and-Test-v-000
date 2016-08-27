@@ -14,9 +14,6 @@ class UserController < ApplicationController
   post '/login' do
     user = User.find_by(username: params[:username])
 
-    #check if username and password correct
-    #if correct, redirect to test pages
-    #if incorrect, go to back to login
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect '/tests'
@@ -26,7 +23,6 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-    check_if_session(
     if params[:username] == "" || params[:password] == ""
       redirect to "/signup"
     else
@@ -36,6 +32,5 @@ class UserController < ApplicationController
 
       redirect to '/tests'
     end
-    )
   end
 end

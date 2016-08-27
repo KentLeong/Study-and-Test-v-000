@@ -2,7 +2,7 @@ module Session_Checkable
 
   # if session is true, go to /tests
   # if not, run code
-  def check_if_session_(code)
+  def check_if_session_true(code)
     if !!session[:user_id]
       redirect to '/tests'
     else
@@ -10,4 +10,11 @@ module Session_Checkable
     end
   end
 
+  def check_if_session_false(code)
+    if !session[:user_id]
+      redirect to '/login'
+    else
+      code
+    end
+  end
 end
