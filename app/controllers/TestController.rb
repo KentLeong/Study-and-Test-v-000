@@ -18,4 +18,18 @@ class TestController < ApplicationController
     @test = Test.find_by_id(params[:id])
     erb :'/tests/show'
   end
+
+  get '/tests/:id/edit' do
+    @test = Test.find_by_id(params[:id])
+    erb :'/tests/edit'
+  end
+
+  patch '/tests/:id' do
+    @user = User.find_by_id(session[:user_id])
+    @test = Test.find_by_id(params[:id])
+    @test.name = params[:name]
+    @test.description = params[:description]
+    @test.save
+    redirect to "/tests/#{@test.id}"
+  end
 end
