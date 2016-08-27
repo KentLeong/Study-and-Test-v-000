@@ -1,9 +1,18 @@
 <center>
   <h1><%= @test.name %></h1>
   <h2>By: <a href="/users/<%=@user.username%>"><%= @user.username %></a></h2>
+
+
   <br>
   <% if session[:user_id] == @user.id %>
-    <a href="/tests/<%=@test.id%>/edit">Edit</a>
+    <a href="/tests/<%=@test.id%>/edit">Edit</a><br>
   <%end%>
+  <% questions = [] %>
+  <% Question.all.each do |q|%>
+    <% if q.test_id == @test.id %>
+      <% questions << q%>
+    <% end %>
+  <% end %>
+  Questions: <%=questions.count%><br>
   <p>Test Description: <%= @test.description %></p>
 </center>

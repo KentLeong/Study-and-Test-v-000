@@ -10,14 +10,14 @@
     <label>Description: <input type="text" value="<%= @test.description %>" name="description"></label><br>
     <br>
 
-    <% @multiple_choices.each_with_index do |mc, index|%>
+    <% @questions.each_with_index do |q, index|%>
       <h3>Question <%=index+1%>:</h3>
-      <h3><input type="text" value="<%= mc.question %>" name="question[]"></h3><br>
-      <label>A. </label><input type="text" value="<%= mc.choice1 %>" name="question[]choice1[]">
-      <label>B. </label><input type="text" value="<%= mc.choice2 %>" name="question[]choice2[]">
-      <label>C. </label><input type="text" value="<%= mc.choice3 %>" name="question[]choice3[]">
-      <label>D. </label><input type="text" value="<%= mc.choice4 %>" name="question[]choice4[]">
-      <label>Answer: </label><input type="text" value="<%= mc.answer %>" name="question[]anwer[]"><br>
+      <h3><input type="text" value="<%= q.question %>" name="question[]"></h3><br>
+      <label>A. </label><input type="text" value="<%= q.choice1 %>" name="question[]choice1[]">
+      <label>B. </label><input type="text" value="<%= q.choice2 %>" name="question[]choice2[]">
+      <label>C. </label><input type="text" value="<%= q.choice3 %>" name="question[]choice3[]">
+      <label>D. </label><input type="text" value="<%= q.choice4 %>" name="question[]choice4[]">
+      <label>Answer: </label><input type="text" value="<%= q.answer %>" name="question[]anwer[]"><br>
 
     <% end %>
 

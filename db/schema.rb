@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20160827035354) do
 
-  create_table "multiple_choices", force: :cascade do |t|
+  create_table "questions", force: :cascade do |t|
     t.string  "question"
     t.string  "choice1"
     t.string  "choice2"

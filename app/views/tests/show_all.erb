@@ -4,7 +4,17 @@
   <% @tests.each do |test| %>
     <% user = User.find_by_id(test.user_id) %>
     <a href="/tests/<%=test.id%>"><%= test.name %></a> - By: <a href="/users/<%= user.id %>"><%=user.username%></a><br>
-    <p>Description:<br><p><%=test.description%></p></p><br><br>
+    <p>
+      Description:<br>
+      <% questions = [] %>
+      <% Question.all.each do |q|%>
+        <% if q.test_id == test.id %>
+          <% questions << q%>
+        <% end %>
+      <% end %>
+      Questions: <%=questions.count%><br>
+      <p><%=test.description%></p>
+    </p><br><br>
   <% end %>
 
 </center>

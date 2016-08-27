@@ -1,4 +1,4 @@
 class Test < ActiveRecord::Base
   belongs_to :users
-  has_many :multiple_choices
+  has_many :questions
 end
