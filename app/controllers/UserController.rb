@@ -11,6 +11,15 @@ class UserController < ApplicationController
     erb :'/users/signup'
   end
 
+  get '/signout' do
+    if !!session[:user_id]
+      session.destroy
+      redirect to '/login'
+    else
+      redirect to '/login'
+    end
+  end
+
   post '/login' do
     user = User.find_by(username: params[:username])
 
