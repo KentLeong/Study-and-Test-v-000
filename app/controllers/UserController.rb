@@ -26,7 +26,7 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-
+    check_if_session(
     if params[:username] == "" || params[:password] == ""
       redirect to "/signup"
     else
@@ -36,5 +36,6 @@ class UserController < ApplicationController
 
       redirect to '/tests'
     end
+    )
   end
 end
