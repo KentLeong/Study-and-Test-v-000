@@ -20,6 +20,11 @@ class UserController < ApplicationController
     end
   end
 
+  get '/users/:id' do
+    @user = User.find_by_id(params[:id])
+    erb :'/users/show'
+  end
+
   post '/login' do
     user = User.find_by(username: params[:username])
 

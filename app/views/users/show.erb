@@ -1,0 +1,16 @@
+<center>
+<h1>Hello, <%=@user.username%>!</h1>
+
+<h2><a href="">Create</a> a test?</h2>
+
+<br>
+
+<h1>Your Tests:</h1>
+<% @user.tests.each do |test| %>
+  <a href=""><%= test.name %></a><br><br>
+  <a href="/tests/<%=test.id%>/edit">Edit</a> |
+  <a href="/tests/<%=test.id%>/delete">Delete</a>
+  <p>Description:
+  <%= test.description %></p><br><br>
+<% end %>
+</center>
