@@ -2,7 +2,8 @@
   <h1>Tests</h1>
 
   <% @tests.each do |test| %>
-    <a href=""><%= test.name %></a><br>
+    <% user = User.find_by_id(test.user_id) %>
+    <a href=""><%= test.name %></a> - By: <a href=""><%=user.username%></a><br>
   <% end %>
 
 </center>
