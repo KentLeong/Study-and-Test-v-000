@@ -24,10 +24,10 @@ class TestController < ApplicationController
 
   get '/tests/:id/edit' do
     @test = Test.find_by_id(params[:id])
-    @multiple_choices = []
+    @questions = []
     Question.all.each do |q|
       if q.test_id == @test.id
-        @multiple_choices << q
+        @questions << q
       end
     end
     erb :'/tests/edit'

@@ -13,10 +13,10 @@
     <% @questions.each_with_index do |q, index|%>
       <h3>Question <%=index+1%>:</h3>
       <h3><input type="text" value="<%= q.question %>" name="question[]"></h3><br>
-      <label>A. </label><input type="text" value="<%= q.choice1 %>" name="question[]choice1[]">
-      <label>B. </label><input type="text" value="<%= q.choice2 %>" name="question[]choice2[]">
-      <label>C. </label><input type="text" value="<%= q.choice3 %>" name="question[]choice3[]">
-      <label>D. </label><input type="text" value="<%= q.choice4 %>" name="question[]choice4[]">
+      <label>A. </label><input id="<%=q.id%>_a" type="text" value="<%= q.choice1 %>" name="question[]choice1[]">
+      <label>B. </label><input id="<%=q.id%>_b" type="text" value="<%= q.choice2 %>" name="question[]choice2[]">
+      <label>C. </label><input id="<%=q.id%>_c" type="text" value="<%= q.choice3 %>" name="question[]choice3[]">
+      <label>D. </label><input id="<%=q.id%>_d" type="text" value="<%= q.choice4 %>" name="question[]choice4[]">
       <label>Answer: </label><input type="text" value="<%= q.answer %>" name="question[]anwer[]"><br>
 
     <% end %>
