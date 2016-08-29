@@ -13,6 +13,8 @@ question1 = Question.create(question: "What is 4 + 5?", choice1: "4", choice2: "
 question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "2")
 question1 = Question.create(question: "What is 7 + 4?", choice1: "9", choice2: "14", choice3: "11", choice4: "2", answer: "c", test_id: "2")
 question1 = Question.create(question: "What is 6 + 4?", choice1: "4", choice2: "10", choice3: "7", choice4: "3", answer: "b", test_id: "2")
+question1 = Question.create(question: "What is 7 + 4?", choice1: "9", choice2: "14", choice3: "11", choice4: "2", answer: "c", test_id: "2")
+
 
 user2 = User.create(username: "Eric", password: "123456")
 
@@ -20,13 +22,14 @@ test3 = Test.create(name: "Geometry", user_id: user2.id, description: "Test your
 test4 = Test.create(name: "Calc", user_id: user2.id, description: "Test your knowledge in Calc!")
 question1 = Question.create(question: "What is 1 + 1?", choice1: "2", choice2: "3", choice3: "4", choice4: "5", answer: "a", test_id: "3")
 question1 = Question.create(question: "What is 4 + 5?", choice1: "4", choice2: "7", choice3: "2", choice4: "9", answer: "d", test_id: "3")
+question1 = Question.create(question: "What is 7 + 4?", choice1: "9", choice2: "14", choice3: "11", choice4: "2", answer: "c", test_id: "3")
+question1 = Question.create(question: "What is 7 + 4?", choice1: "9", choice2: "14", choice3: "11", choice4: "2", answer: "c", test_id: "3")
 question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "3")
 question1 = Question.create(question: "What is 7 + 4?", choice1: "9", choice2: "14", choice3: "11", choice4: "2", answer: "c", test_id: "3")
 question1 = Question.create(question: "What is 6 + 4?", choice1: "4", choice2: "10", choice3: "7", choice4: "3", answer: "b", test_id: "3")
 
 question1 = Question.create(question: "What is 1 + 1?", choice1: "2", choice2: "3", choice3: "4", choice4: "5", answer: "a", test_id: "4")
 question1 = Question.create(question: "What is 4 + 5?", choice1: "4", choice2: "7", choice3: "2", choice4: "9", answer: "d", test_id: "4")
-question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "4")
 question1 = Question.create(question: "What is 7 + 4?", choice1: "9", choice2: "14", choice3: "11", choice4: "2", answer: "c", test_id: "4")
 question1 = Question.create(question: "What is 6 + 4?", choice1: "4", choice2: "10", choice3: "7", choice4: "3", answer: "b", test_id: "4")
 
@@ -37,11 +40,19 @@ test6 = Test.create(name: "PreCalc", user_id: user3.id, description: "Test your 
 question1 = Question.create(question: "What is 1 + 1?", choice1: "2", choice2: "3", choice3: "4", choice4: "5", answer: "a", test_id: "5")
 question1 = Question.create(question: "What is 4 + 5?", choice1: "4", choice2: "7", choice3: "2", choice4: "9", answer: "d", test_id: "5")
 question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "5")
+question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "5")
+question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "5")
 question1 = Question.create(question: "What is 7 + 4?", choice1: "9", choice2: "14", choice3: "11", choice4: "2", answer: "c", test_id: "5")
 question1 = Question.create(question: "What is 6 + 4?", choice1: "4", choice2: "10", choice3: "7", choice4: "3", answer: "b", test_id: "5")
 
 question1 = Question.create(question: "What is 1 + 1?", choice1: "2", choice2: "3", choice3: "4", choice4: "5", answer: "a", test_id: "6")
 question1 = Question.create(question: "What is 4 + 5?", choice1: "4", choice2: "7", choice3: "2", choice4: "9", answer: "d", test_id: "6")
+question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "6")
+question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "6")
+question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "6")
+question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "6")
+question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "6")
+question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "6")
 question1 = Question.create(question: "What is 4 + 2?", choice1: "3", choice2: "6", choice3: "4", choice4: "8", answer: "b", test_id: "6")
 question1 = Question.create(question: "What is 7 + 4?", choice1: "9", choice2: "14", choice3: "11", choice4: "2", answer: "c", test_id: "6")
 question1 = Question.create(question: "What is 6 + 4?", choice1: "4", choice2: "10", choice3: "7", choice4: "3", answer: "b", test_id: "6")
