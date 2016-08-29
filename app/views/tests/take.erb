@@ -1,7 +1,7 @@
 <center><h1><%=@test.name%></h1></center><br>
   <form action="/test/<%=@test.id%>/submit" method="POST">
     <% @questions.each_with_index do |t, index| %>
-        <h3><%=t.question%></h3>
+        <h3><%=index+1%>.) <%=t.question%></h3>
         <input type="radio" name="<%=index%>_1" value="">A.)  <%=t.choice1%><br>
         <input type="radio" name="<%=index%>_1" value="">B.)  <%=t.choice2%><br>
         <input type="radio" name="<%=index%>_1" value="">C.)  <%=t.choice3%><br>

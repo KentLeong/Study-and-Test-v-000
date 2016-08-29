@@ -39,6 +39,10 @@ class TestController < ApplicationController
     erb :'/tests/create_questions'
   end
 
+  post '/test/:id/submit' do
+
+  end
+
   post '/tests/:id/test' do
     @test = Test.find_by_id(params[:id])
     @questions = []
