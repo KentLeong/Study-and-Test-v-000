@@ -19,9 +19,13 @@ class TestController < ApplicationController
     erb :'/tests/take'
   end
 
-  post '/tests' do
-    Test.create(name: params[:name], description: params[:description], user_id: session[:user_id])
-    redirect to '/tests'
+  post '/tests/question' do
+    @test = Test.create(name: params[:name], description: params[:description], user_id: session[:user_id])
+    count = params[:questions].to_i
+    count.times do
+      @questions = Question.create(test_id: @test.id)
+    end
+    erb :'/tests/create_questions'
   end
 
   get '/tests/:id' do
