@@ -23,11 +23,6 @@ ActiveRecord::Schema.define(version: 20160827035354) do
     t.integer "study_id"
   end
 
-  create_table "studies", force: :cascade do |t|
-    t.string "name"
-    t.string "test_id"
-  end
-
   create_table "tests", force: :cascade do |t|
     t.string  "name"
     t.integer "user_id"
