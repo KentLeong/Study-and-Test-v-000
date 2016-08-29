@@ -1,2 +1,15 @@
-<form>
+<form action="/tests/<%=@test.id%>/questions" method="POST">
+  <input id="hidden" type="hidden" value="PATCH" name="_method">
+  <%@questions.each_with_index do |q, index|%>
+    <h3> Question <%=index+1%></h3>
+    <h3>Question: <input id="<%=q.id%>" type="text" value="" name="questions[]question<%=index%>[]question"></h3>
+    <p>A.): <input id="<%=q.id%>"type="text" value="" name="questions[]question<%=index%>[]choice1"></p>
+    <p>B.): <input id="<%=q.id%>"type="text" value="" name="questions[]question<%=index%>[]choice2"></p>
+    <p>C.): <input id="<%=q.id%>"type="text" value="" name="questions[]question<%=index%>[]choice3"></p>
+    <p>D.): <input id="<%=q.id%>"type="text" value="" name="questions[]question<%=index%>[]choice4"></p>
+    <p>Answer: <input id="<%=q.id%>"type="text" value="" name="questions[]question<%=index%>[]answer"></p>
+    <input type="hidden" value="<%=q.id%>" name ="questions[]question<%=index%>[]q_id">
+
+  <% end %>
+  <input type="submit" value="submit">
 </form>
