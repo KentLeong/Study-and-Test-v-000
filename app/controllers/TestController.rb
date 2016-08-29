@@ -8,6 +8,10 @@ class TestController < ApplicationController
     erb :'/tests/create'
   end
 
+  post '/tests/:id/test' do
+    erb :'/tests/take'
+  end
+
   post '/tests' do
     Test.create(name: params[:name], description: params[:description], user_id: session[:user_id])
     redirect to '/tests'
