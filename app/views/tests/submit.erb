@@ -1,4 +1,50 @@
 <center>
-  <h2>You got * / * correct! </h2>
-  
+  <h1><%=@test.name%></h1><br>
+  <h2>You got <%=@correct.count%> / <%=@questions.count%> correct! </h2>
+
+  <br><br>
+  <h2>Correct Answers</h2>
+  <p>
+    <%if @correct.count == 1%>
+      You got question number <%=@correct.first%> correct!
+      <%else%>
+      <%if @correct != []%>
+          You got question numbers,
+        <%@correct.each_with_index do |q, index|%>
+          <% if @correct.count == index+1%>
+              and <%=q%>
+          <%else%>
+            <%=q%>,
+          <%end%>
+        <%end%>
+          correct!
+        <%else%>
+          Nothing is correct =(
+      <%end%>
+    <%end%>
+  </p>
+  <br><br>
+  <h2>Incorrect Answers</h2>
+  <p>
+    <%if @incorrect.count == 1%>
+      You got question number <%=@incorrect.first%> incorrect!
+      <%else%>
+      <%if @incorrect != []%>
+          You got question numbers,
+        <%@incorrect.each_with_index do |q, index|%>
+          <% if @incorrect.count == index+1%>
+              and <%=q%>
+          <%else%>
+            <%=q%>,
+          <%end%>
+        <%end%>
+          incorrect!
+        <%else%>
+          Nothing is incorrect =)
+      <%end%>
+    <%end%>
+  </p>
+
+  <a href="/">Take more tests!</a>
+  <a href="/tests/<%=@test.id%>">Take this tests again!</a>
 </center>

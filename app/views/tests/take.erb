@@ -2,10 +2,13 @@
   <form action="/test/<%=@test.id%>/submit" method="POST">
     <% @questions.each_with_index do |t, index| %>
         <h3><%=index+1%>.) <%=t.question%></h3>
-        <input type="radio" name="<%=index%>_1" value="">A.)  <%=t.choice1%><br>
-        <input type="radio" name="<%=index%>_1" value="">B.)  <%=t.choice2%><br>
-        <input type="radio" name="<%=index%>_1" value="">C.)  <%=t.choice3%><br>
-        <input type="radio" name="<%=index%>_1" value="">D.)  <%=t.choice4%><br>
+        <input type="radio" name="questions[]question<%=index%>[]answer" value="a">A.)  <%=t.choice1%><br>
+        <input type="radio" name="questions[]question<%=index%>[]answer" value="b">B.)  <%=t.choice2%><br>
+        <input type="radio" name="questions[]question<%=index%>[]answer" value="c">C.)  <%=t.choice3%><br>
+        <input type="radio" name="questions[]question<%=index%>[]answer" value="d">D.)  <%=t.choice4%><br>
+        <input type="hidden" name="questions[]question<%=index%>[]q_id" value="<%=t.id%>">
+        <input type="hidden" name="questions[]question<%=index%>[]q_num" value="<%=index+1%>">
+
     <% end %>
     <br><br>
     <input type="submit" value="submit">

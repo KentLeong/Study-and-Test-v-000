@@ -12,7 +12,9 @@
 <% end %>
 <% @user.tests.each do |test| %>
   <a href="/tests/<%= test.id %>"><%= test.name %></a><br><br>
+  <% if session[:user_id] == @user.id %>
   <a href="/tests/<%=test.id%>/edit">Edit</a>
+  <% end %>
   <p>Description:
   <%= test.description %></p><br><br>
 <% end %>

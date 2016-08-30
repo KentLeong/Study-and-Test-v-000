@@ -40,7 +40,26 @@ class TestController < ApplicationController
   end
 
   post '/test/:id/submit' do
+    @test = Test.find_by_id(params[:id])
+    @questions = []
+    @correct = []
+    @incorrect = []
+    Question.all.each do |q|
+      if q.test_id == @test.id
+        @questions << q
+      end
+    end
 
+
+
+    @questions.each_with_index do |q, index|
+      if q.answer == params[:questions].first["question#{index}"].first[:answer]
+        @correct << params[:questions].first["question#{index}"].first[:q_num]
+      else
+        @incorrect << params[:questions].first["question#{index}"].first[:q_num]
+      end
+    end
+    erb :'/tests/submit'
   end
 
   post '/tests/:id/test' do
@@ -103,7 +122,6 @@ class TestController < ApplicationController
       @question.choice3 = @questions["question#{s}"].first[:choice3]
       @question.choice4 = @questions["question#{s}"].first[:choice4]
       @question.answer = @questions["question#{s}"].first[:answer]
-      binding.pry
       @question.save
       s += 1
     end
