@@ -1,10 +1,18 @@
 class UserController < ApplicationController
   get '/login' do
-    erb :'/users/login'
+    if !session[:user_id]
+      erb :'/users/login'
+    else
+      redirect to "/tests"
+    end
   end
 
   get '/signup' do
-    erb :'/users/signup'
+    if !session[:user_id]
+      erb :'/users/signup'
+    else
+      redirect to "/tests"
+    end
   end
 
   get '/signout' do
@@ -17,8 +25,12 @@ class UserController < ApplicationController
   end
 
   get '/users/:id' do
-    @user = User.find_by_id(params[:id])
-    erb :'/users/show'
+    if !!session[:user_id]
+      @user = User.find_by_id(params[:id])
+      erb :'/users/show'
+    else
+      redirect to "/login"
+    end
   end
 
   post '/login' do

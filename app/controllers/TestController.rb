@@ -1,42 +1,63 @@
 class TestController < ApplicationController
   get '/tests' do
-    @tests = Test.all
-    erb :'/tests/show_all'
+    if !!session[:user_id]
+      @tests = Test.all
+      erb :'/tests/show_all'
+    else
+      redirect to "/login"
+    end
   end
 
   get '/tests/create' do
-    erb :'/tests/create'
+    if !!session[:user_id]
+      erb :'/tests/create'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/tests/:id' do
-    @test = Test.find_by_id(params[:id])
-    @user = User.find_by_id(@test.user_id)
-    if !session[:user_id]
-      redirect to '/'
+    if !!session[:user_id]
+      @test = Test.find_by_id(params[:id])
+      @user = User.find_by_id(@test.user_id)
+      if !session[:user_id]
+        redirect to '/'
+      end
+      erb :'/tests/show'
+    else
+      redirect to "/login"
     end
-    erb :'/tests/show'
   end
 
   get '/tests/:id/edit' do
+
     @test = Test.find_by_id(params[:id])
-    @questions = []
-    Question.all.each do |q|
-      if q.test_id == @test.id
-        @questions << q
+    if session[:user_id] == @test.user_id
+      @questions = []
+      Question.all.each do |q|
+        if q.test_id == @test.id
+          @questions << q
+        end
       end
+      erb :'/tests/edit'
+    else
+      redirect to '/login'
     end
-    erb :'/tests/edit'
   end
 
   get '/tests/:id/create_questions' do
     @test = Test.find_by_id(params[:id])
-    @questions = []
-    Question.all.each do |q|
-      if q.test_id == @test.id
-        @questions << q
+    if session[:user_id] == @test.user_id
+      @questions = []
+      Question.all.each do |q|
+        if q.test_id == @test.id
+          @questions << q
+        end
       end
+      erb :'/tests/create_questions'
+    else
+      redirect to '/login'
     end
-    erb :'/tests/create_questions'
   end
 
   post '/test/:id/submit' do
