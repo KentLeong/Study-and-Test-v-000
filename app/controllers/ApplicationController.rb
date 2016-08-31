@@ -18,4 +18,11 @@ class ApplicationController < Sinatra::Base
       erb :index
     end
   end
+    private
+
+    def user_logged_in?
+      if !session[:user_id]
+        redirect to '/login'
+      end
+    end
 end

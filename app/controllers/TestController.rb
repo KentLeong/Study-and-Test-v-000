@@ -1,11 +1,19 @@
 class TestController < ApplicationController
   get '/tests' do
-    @tests = Test.all
-    erb :'/tests/show_all'
+    if !!session[:user_id]
+      @tests = Test.all
+      erb :'/tests/show_all'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/tests/create' do
-    erb :'/tests/create'
+    if !!session[:user_id]
+      erb :'/tests/create'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/tests/:id' do
@@ -29,6 +37,7 @@ class TestController < ApplicationController
   end
 
   get '/tests/:id/create_questions' do
+    if params[:id]
     @test = Test.find_by_id(params[:id])
     @questions = []
     Question.all.each do |q|
