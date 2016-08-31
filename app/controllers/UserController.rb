@@ -1,12 +1,10 @@
 class UserController < ApplicationController
   get '/login' do
-      user_logged_in?
-      erb :'/users/login'
+    erb :'/users/login'
   end
 
   get '/signup' do
-      user_logged_in?
-      erb :'/users/signup'
+    erb :'/users/signup'
   end
 
   get '/signout' do
