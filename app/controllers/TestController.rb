@@ -1,31 +1,24 @@
 class TestController < ApplicationController
   get '/tests' do
-    if !!session[:user_id]
-      @tests = Test.all
-      erb :'/tests/show_all'
-    else
-      redirect to '/login'
-    end
+    user_logged_in?
+    @tests = Test.all
+    erb :'/tests/show_all'
   end
 
   get '/tests/create' do
-    if !!session[:user_id]
-      erb :'/tests/create'
-    else
-      redirect to '/login'
-    end
+    user_logged_in?
+    erb :'/tests/create'
   end
 
   get '/tests/:id' do
+    user_logged_in?
     @test = Test.find_by_id(params[:id])
     @user = User.find_by_id(@test.user_id)
-    if !session[:user_id]
-      redirect to '/'
-    end
     erb :'/tests/show'
   end
 
   get '/tests/:id/edit' do
+    user_logged_in?
     @test = Test.find_by_id(params[:id])
     @questions = []
     Question.all.each do |q|
@@ -37,7 +30,6 @@ class TestController < ApplicationController
   end
 
   get '/tests/:id/create_questions' do
-    if params[:id]
     @test = Test.find_by_id(params[:id])
     @questions = []
     Question.all.each do |q|

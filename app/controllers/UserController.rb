@@ -1,18 +1,12 @@
 class UserController < ApplicationController
   get '/login' do
-    if !!session[:user_id]
-      redirect to '/tests'
-    else
+      user_logged_in?
       erb :'/users/login'
-    end
   end
 
   get '/signup' do
-    if !!session[:user_id]
-      redirect to '/tests'
-    else
+      user_logged_in?
       erb :'/users/signup'
-    end
   end
 
   get '/signout' do
