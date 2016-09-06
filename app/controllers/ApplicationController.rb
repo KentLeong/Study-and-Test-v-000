@@ -12,10 +12,17 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    if !!session[:user_id]
+    @num = 5
+    if logged_in?
       redirect to '/tests'
     else
       erb :index
+    end
+  end
+
+  helpers do
+    def logged_in?
+      !!session[:user_id]
     end
   end
 end

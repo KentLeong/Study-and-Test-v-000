@@ -1,6 +1,6 @@
 class TestController < ApplicationController
   get '/tests' do
-    if !!session[:user_id]
+    if logged_in?
       @tests = Test.all
       erb :'/tests/show_all'
     else
@@ -9,7 +9,7 @@ class TestController < ApplicationController
   end
 
   get '/tests/create' do
-    if !!session[:user_id]
+    if logged_in?
       erb :'/tests/create'
     else
       redirect to '/login'
@@ -17,7 +17,7 @@ class TestController < ApplicationController
   end
 
   get '/tests/:id' do
-    if !!session[:user_id]
+    if logged_in?
       @test = Test.find_by_id(params[:id])
       @user = User.find_by_id(@test.user_id)
       if !session[:user_id]
