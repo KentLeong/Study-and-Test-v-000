@@ -20,7 +20,7 @@ class TestController < ApplicationController
     if logged_in?
       @test = Test.find_by_id(params[:id])
       @user = User.find_by_id(@test.user_id)
-      if !session[:user_id]
+      if !logged_in?
         redirect to '/'
       end
       erb :'/tests/show'
@@ -32,7 +32,7 @@ class TestController < ApplicationController
   get '/tests/:id/edit' do
 
     @test = Test.find_by_id(params[:id])
-    if session[:user_id] == @test.user_id
+    if current_user.id == @test.user_id
       @questions = []
       Question.all.each do |q|
         if q.test_id == @test.id
@@ -47,7 +47,7 @@ class TestController < ApplicationController
 
   get '/tests/:id/create_questions' do
     @test = Test.find_by_id(params[:id])
-    if session[:user_id] == @test.user_id
+    if current_user.id == @test.user_id
       @questions = []
       Question.all.each do |q|
         if q.test_id == @test.id
@@ -106,7 +106,7 @@ class TestController < ApplicationController
 
   delete '/tests/:id/delete' do
     @test = Test.find_by_id(params[:id])
-    if session[:user_id] == @test.user_id
+    if current_user.id == @test.user_id
       if @test.user_id == session[:user_id]
         @test.delete
         redirect to '/tests'
