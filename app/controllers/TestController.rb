@@ -64,8 +64,6 @@ class TestController < ApplicationController
       end
     end
 
-
-
     @questions.each_with_index do |q, index|
       if q.answer == params[:questions].first["question#{index}"].first[:answer]
         @correct << params[:questions].first["question#{index}"].first[:q_num]
