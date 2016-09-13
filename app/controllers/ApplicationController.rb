@@ -2,7 +2,6 @@ require './config/environment'
 require 'pry'
 
 class ApplicationController < Sinatra::Base
-  include Session_Checkable
 
   configure do
     set :public_folder, 'public'
@@ -12,12 +11,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    @num = 5
-    if logged_in?
-      redirect to '/tests'
-    else
-      erb :index
-    end
+    redirect to '/tests' if logged_in?
+    erb :index
   end
 
   helpers do

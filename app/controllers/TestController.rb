@@ -9,20 +9,14 @@ class TestController < ApplicationController
   end
 
   get '/tests/create' do
-    if logged_in?
-      erb :'/tests/create'
-    else
-      redirect to '/login'
-    end
+    erb :'/tests/create' if logged_in?
+    redirect to '/login'
   end
 
   get '/tests/:id' do
     if logged_in?
       @test = Test.find_by_id(params[:id])
       @user = User.find_by_id(@test.user_id)
-      if !logged_in?
-        redirect to '/'
-      end
       erb :'/tests/show'
     else
       redirect to "/login"
@@ -30,9 +24,8 @@ class TestController < ApplicationController
   end
 
   get '/tests/:id/edit' do
-
-    @test = Test.find_by_id(params[:id])
     if current_user.id == @test.user_id
+      @test = Test.find_by_id(params[:id])
       @questions = []
       Question.all.each do |q|
         if q.test_id == @test.id
