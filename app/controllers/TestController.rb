@@ -9,8 +9,11 @@ class TestController < ApplicationController
   end
 
   get '/tests/create' do
-    erb :'/tests/create' if logged_in?
-    redirect to '/login'
+    if logged_in?
+      erb :'/tests/create'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/tests/:id' do
@@ -24,14 +27,9 @@ class TestController < ApplicationController
   end
 
   get '/tests/:id/edit' do
+    @test = Test.find_by_id(params[:id])
     if current_user.id == @test.user_id
-      @test = Test.find_by_id(params[:id])
-      @questions = []
-      Question.all.each do |q|
-        if q.test_id == @test.id
-          @questions << q
-        end
-      end
+      get_questions
       erb :'/tests/edit'
     else
       redirect to '/login'
@@ -41,12 +39,7 @@ class TestController < ApplicationController
   get '/tests/:id/create_questions' do
     @test = Test.find_by_id(params[:id])
     if current_user.id == @test.user_id
-      @questions = []
-      Question.all.each do |q|
-        if q.test_id == @test.id
-          @questions << q
-        end
-      end
+      get_questions
       erb :'/tests/create_questions'
     else
       redirect to '/login'
@@ -58,11 +51,7 @@ class TestController < ApplicationController
     @questions = []
     @correct = []
     @incorrect = []
-    Question.all.each do |q|
-      if q.test_id == @test.id
-        @questions << q
-      end
-    end
+    get_questions
 
     @questions.each_with_index do |q, index|
       if q.answer == params[:questions].first["question#{index}"].first[:answer]
@@ -114,14 +103,9 @@ class TestController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @test = Test.find_by_id(params[:id])
 
-    @question_count = []
-    Question.all.each do |q|
-      if q.test_id == @test.id
-        @question_count << q
-      end
-    end
+    get_questions
 
-    @count = @question_count.count
+    @count = @questions.count
     @questions = params[:questions].first
 
 
@@ -144,18 +128,10 @@ class TestController < ApplicationController
 
     @user = User.find_by_id(session[:user_id])
     @test = Test.find_by_id(params[:id])
-    @test.name = params[:name]
-    @test.description = params[:description]
-    @test.save
+    @test.update(name: params[:name], description: params[:description])
+    get_questions
 
-    @question_count = []
-    Question.all.each do |q|
-      if q.test_id == @test.id
-        @question_count << q
-      end
-    end
-
-    @count = @question_count.count
+    @count = @questions.count
     @questions = params[:questions].first
     s = 0
 
@@ -173,4 +149,14 @@ class TestController < ApplicationController
 
     redirect to "/tests/#{@test.id}"
   end
+
+  private
+    def get_questions
+      @questions = []
+      Question.all.each do |q|
+        if q.test_id == @test.id
+          @questions << q
+        end
+      end
+    end
 end
