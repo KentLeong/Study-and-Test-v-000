@@ -102,25 +102,7 @@ class TestController < ApplicationController
 
     @user = User.find_by_id(session[:user_id])
     @test = Test.find_by_id(params[:id])
-
-    get_questions
-
-    @count = @questions.count
-    @questions = params[:questions].first
-
-
-    s = 0
-    while s < @count do
-      @question = Question.find_by_id(@questions["question#{s}"].first[:q_id])
-      @question.question = @questions["question#{s}"].first[:question]
-      @question.choice1 = @questions["question#{s}"].first[:choice1]
-      @question.choice2 = @questions["question#{s}"].first[:choice2]
-      @question.choice3 = @questions["question#{s}"].first[:choice3]
-      @question.choice4 = @questions["question#{s}"].first[:choice4]
-      @question.answer = @questions["question#{s}"].first[:answer]
-      @question.save
-      s += 1
-    end
+    update_questions
     redirect to "/tests/#{@test.id}"
   end
 
@@ -129,24 +111,7 @@ class TestController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @test = Test.find_by_id(params[:id])
     @test.update(name: params[:name], description: params[:description])
-    get_questions
-
-    @count = @questions.count
-    @questions = params[:questions].first
-    s = 0
-
-    while s < @count do
-      @question = Question.find_by_id(@questions["question#{s}"].first[:q_id])
-      @question.question = @questions["question#{s}"].first[:question]
-      @question.choice1 = @questions["question#{s}"].first[:choice1]
-      @question.choice2 = @questions["question#{s}"].first[:choice2]
-      @question.choice3 = @questions["question#{s}"].first[:choice3]
-      @question.choice4 = @questions["question#{s}"].first[:choice4]
-      @question.answer = @questions["question#{s}"].first[:answer]
-      @question.save
-      s += 1
-    end
-
+    update_questions
     redirect to "/tests/#{@test.id}"
   end
 
@@ -157,6 +122,24 @@ class TestController < ApplicationController
         if q.test_id == @test.id
           @questions << q
         end
+      end
+    end
+
+    def update_questions
+      get_questions
+      @count = @questions.count
+      @questions = params[:questions].first
+      s = 0
+      while s < @count do
+        @question = Question.find_by_id(@questions["question#{s}"].first[:q_id])
+        @question.question = @questions["question#{s}"].first[:question]
+        @question.choice1 = @questions["question#{s}"].first[:choice1]
+        @question.choice2 = @questions["question#{s}"].first[:choice2]
+        @question.choice3 = @questions["question#{s}"].first[:choice3]
+        @question.choice4 = @questions["question#{s}"].first[:choice4]
+        @question.answer = @questions["question#{s}"].first[:answer]
+        @question.save
+        s += 1
       end
     end
 end
