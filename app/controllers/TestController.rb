@@ -48,7 +48,6 @@ class TestController < ApplicationController
 
   post '/test/:id/submit' do
     @test = Test.find_by_id(params[:id])
-    @questions = []
     @correct = []
     @incorrect = []
     get_questions
@@ -65,12 +64,7 @@ class TestController < ApplicationController
 
   post '/tests/:id/test' do
     @test = Test.find_by_id(params[:id])
-    @questions = []
-    Question.all.each do |q|
-      if q.test_id == @test.id
-        @questions << q
-      end
-    end
+    get_questions
     erb :'/tests/take'
   end
 
@@ -86,20 +80,12 @@ class TestController < ApplicationController
 
   delete '/tests/:id/delete' do
     @test = Test.find_by_id(params[:id])
-    if current_user.id == @test.user_id
-      if @test.user_id == session[:user_id]
-        @test.delete
-        redirect to '/tests'
-      else
-        redirect to '/tests'
-      end
-    else
-      redirect to '/tests'
-    end
+    @test.delete if current_user.id == @test.user_id && @test.user_id == session[:user_id]
+    redirect to '/tests'
   end
 
   patch '/tests/:id/questions' do
-
+    #Patch new questions
     @user = User.find_by_id(session[:user_id])
     @test = Test.find_by_id(params[:id])
     update_questions
@@ -107,7 +93,7 @@ class TestController < ApplicationController
   end
 
   patch '/tests/:id' do
-
+    #Patch edit questions
     @user = User.find_by_id(session[:user_id])
     @test = Test.find_by_id(params[:id])
     @test.update(name: params[:name], description: params[:description])
